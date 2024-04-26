@@ -1,5 +1,9 @@
 body{
-    background-color: black;
+    /* background-color: black; */
+}
+
+.page{
+    margin: 4vw;
 }
 
 @font-face {
@@ -14,10 +18,75 @@ body{
 }
 
 h1{
-    color:white;
+    /* color:white; */
     font-family: Minecraft Regular;
 }
 h3{
-    color:white;
+    /* color:white; */
     font-family: Minecraft Regular;
+}
+
+.italics{
+    font-style: italic;
+    color:yellowgreen
+}
+
+.title-div {
+    text-align: center;
+}
+
+form{
+    /* display: flex;
+    flex-direction: column; */
+    width: 10vw;
+}
+
+.additional-area{
+    background-color: rgb(36, 36, 36);
+    width: 100vw;
+    height: 90vh;
+    position: absolute;
+    bottom: 1px;
+    border: 1vw solid rgb(51, 51, 51);
+    border-width: 1vw 1vw 0 1vw;
+}
+
+
+
+.scheme-title{
+    text-align: center;
+}
+
+.scheme{
+    width: 85vw;
+    height: 80vw;
+    background-color: blue;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.blocks{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-left: 15vw;
+    margin-right: 15vw;
+
+    
+}
+
+
+.question-block{
+    width: 100px;
+    height: 50px;
+    background-color: #97d931;
+    text-align: center;
+}
+
+.text-block{
+    width: 100px;
+    height: 50px;
+    background-color: #97d931;
+    text-align: center;
+
 }

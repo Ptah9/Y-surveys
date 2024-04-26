@@ -3,17 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Y pools</title>
+    <title>Y surveys</title>
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/reset.css">
 </head>
 <body id="body">
     <div class="page">
-        
-        <h1 class="title">Y polls</h1>
-        <h3 class="title-description">create your own <span>branched</span> polls</h3>
+        <div class="title-div">
+            <h1 class="title">Y surveys</h1>
+            <h3 class="title-description">create your own <span class="italics">branched</span> survey</h3>
+        </div>
+        <div class="survey-information">
+            <form class="inf-form">
+                <label for="name">name: </label>
+                <input type="text" name="name" id="name" required /> 
 
+                <label for="desc">description: </label>
+                <textarea name="desc" cols="40" rows="3"></textarea>
+            </form>
+            <button class="make-scheme">make a scheme</button>
+        </div>
     </div>
+
+
+    <div class="scheme-area additional-area">
+        <h2 class="scheme-title">scheme</h2>
+        <div class="scheme">
+
+        </div>
+        <div class="blocks">
+            <div class="question-block">question?</div>
+            <div class="text-block">text</div>
+        </div>
+    </div>
+
+
+
+
     <script type="module" src="script/main.js"></script>
 </body>
 </html>
