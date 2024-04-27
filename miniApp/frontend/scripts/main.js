@@ -3,8 +3,12 @@
 
 // console.log(questionBlock)
 
+let startBlock = document.querySelector(".scheme")
+
+    
 let drug = function(selector){
-    let block = document.querySelector(selector)
+    let blocks = document.querySelectorAll(selector)
+    let block = blocks[blocks.length - 1];
     block.onmousedown = function(event) {
         let blockSize = {
             "x": block.getBoundingClientRect().width,
@@ -108,7 +112,6 @@ let drug = function(selector){
         else{
 
 
-        
 
         if (block.classList.contains("non-parent")){
             block.insertAdjacentHTML('beforebegin', block.outerHTML);
@@ -116,7 +119,7 @@ let drug = function(selector){
         }
         block.style.position = 'absolute';
         block.style.zIndex = 1000;
-        document.body.append(block); //TODO: выбрать лучшее место, при помещении в схему перемещать его туда
+        // document.body.append(block); //TODO: выбрать лучшее место, при помещении в схему перемещать его туда
 
         function moveAt(pageX, pageY) {
             block.style.left = pageX - shiftX + 'px';
@@ -137,10 +140,29 @@ let drug = function(selector){
         document.addEventListener('mousemove', onMouseMove);
       
         // отпустить блок, удалить ненужные обработчики
-        block.onmouseup = function() {
+        block.onmouseup = function(event) {
+            // block.style.position = 'relative';
+
+            if (block.classList.contains("in-scheme")){
+
+
+            }
+            else{
+                if (event.pageY + blockSize["y"] - shiftY > startBlock.getBoundingClientRect().height){
+                    block.onmouseup = null;
+                    block.parentNode.removeChild(block);
+                }
+                else{
+                    block.onmouseup = null;
+                    startBlock.append(block); 
+                }
+            }
+
+
             document.removeEventListener('mousemove', onMouseMove);
             block.onmouseup = null;
             drug(selector)
+
         };
         
       };
@@ -166,3 +188,4 @@ let drug = function(selector){
 
 drug('.question-block');
 drug('.text-block');
+drug('.start-block');
