@@ -63,7 +63,7 @@ form{
 }
 
 .scheme{
-    width: 85vw;
+    width: 80vw;
     height: 80vw;
     background-color: blue;
     margin-left: auto;
@@ -74,24 +74,30 @@ form{
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
-    margin-left: 15vw;
-    margin-right: 15vw;
+    margin-left: 9vw;
+    margin-right: 9vw;
 
     
 }
 
 
 .question-block{
-    width: 100px;
-    height: 50px;
+    width: 150px;
+    height: 75px;
     background-color: #97d931;
     text-align: center;
+    user-select: none
 }
 
 .text-block{
-    width: 100px;
-    height: 50px;
+    width: 150px;
+    height: 75px;
     background-color: #97d931;
     text-align: center;
+    user-select: none
 
 }
+
+svg {
+    position: absolute;
+  }
