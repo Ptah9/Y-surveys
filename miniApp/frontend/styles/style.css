@@ -60,16 +60,19 @@ form{
 
 .scheme-title{
     text-align: center;
+    overflow: auto;
 }
 
 .scheme{
-    max-width: 1000px;
-    max-height: 1000px;
-    min-width: 100vw;
-    min-height: 100vw;
-    background-color: blue;
+    /* max-width: 1000px;
+    max-height: 1000px; */
+    width: 100vw;
+    height: 100vw;
+    background-color: dimgrey;
     margin-left: auto;
     margin-right: auto;
+    overflow: auto;
+    padding: 17vh;
 }
 
 .blocks{
@@ -90,7 +93,8 @@ form{
     background-color: #97d931;
     text-align: center;
     user-select: none;
-        }
+    border: 3px solid black
+}
 
 .text-block, .start-block{
     width: 150px;
@@ -98,9 +102,61 @@ form{
     background-color: #97d931;
     text-align: center;
     user-select: none;
+    border: 3px solid black
 
+}
+
+.text-block p, .start-block p, .question-block p{
+    position: relative;
+    top: 23px;
+}
+
+
+
+.start-block{
+    position: relative;
 }
 
 svg {
     position: absolute;
   }
+
+.non-parent{
+    /* border: 2px solid black */
+}
+
+.connection-point{
+    background-color: white;
+    width: 20px;
+    height: 20px;
+    border: 2px solid black;
+    border-radius: 100%;
+}
+
+.cp-up{
+    position: relative;
+    left: 64px;
+    top: -10px
+}
+
+.cp-start-down{
+    position: relative;
+    left: 65px;
+    top: 61px
+}
+
+.cp-text-down{
+    position: relative;
+    left: 65px;
+    top: 41px
+}
+.cp-question-left{
+    position: relative;
+    left: -11px;
+    top: 5px
+}
+.cp-question-right{
+    position: relative;
+    left: 136px;
+    top: -15px
+}
