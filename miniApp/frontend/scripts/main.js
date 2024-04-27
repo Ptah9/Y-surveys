@@ -1,13 +1,11 @@
-let schemeArea = document.querySelector(".scheme");
+let scheme = document.querySelector(".scheme");
 let x, y;
-let schemePaddingLeft = Number(window.getComputedStyle(schemeArea, null).getPropertyValue("padding-left").slice(0, -2)),
-    schemePaddingTop = Number(window.getComputedStyle(schemeArea, null).getPropertyValue("padding-top").slice(0, -2));
+let schemePaddingLeft = Number(window.getComputedStyle(scheme, null).getPropertyValue("padding-left").slice(0, -2)),
+    schemePaddingTop = Number(window.getComputedStyle(scheme, null).getPropertyValue("padding-top").slice(0, -2));
 
     
-let drug = function(selector){
-
-    let blocks = document.querySelectorAll(selector)
-
+let blockActivation = function(selector){
+    let blocks = document.querySelectorAll(selector);
     let block = blocks[blocks.length - 1];
     
     block.onmousedown = function(event) {
@@ -103,132 +101,93 @@ let drug = function(selector){
 
             }
             else if(shiftY > 2*blockSize["y"]/3){
-                console.log("bottom")
+                console.log("bottom");
             }
             else {
-                console.log("center")
+                console.log("center");
             }
         }
 
         else{
 
-
-
-        if (block.classList.contains("non-parent")){
-            block.insertAdjacentHTML('beforebegin', block.outerHTML);
-        }
-        block.style.position = 'relative';
-        block.style.zIndex = 1000;
-        // document.body.append(block); 
-
-        function moveAt(movementX, movementY) {
             if (block.classList.contains("non-parent")){
-                schemeArea.append(block); 
-            }
-            // block.style.left = 0 + "px";
-            // block.style.top = 0 + "px";
-            console.log()
-            let newX = Number(block.style.left.slice(0, -2)) + movementX;
-            let newY = Number(block.style.top.slice(0, -2)) + movementY;
-
-            // if(newX > -schemePaddingLeft) 
-            block.style.left = newX + 'px';
-            // else block.style.left = -schemePaddingLeft
-
-            // if(newY > -schemePaddingTop) 
-            block.style.top = newY + 'px';
-            // else block.style.top = -schemePaddingTop
-
-          }
-
-        moveAt(event.movementX, event.movementY);
-        if (block.classList.contains("non-parent")){
-            x = block.getBoundingClientRect().x
-            y = block.getBoundingClientRect().y
-            block.style.left = event.pageX - shiftX - x + "px";
-            block.style.top = event.pageY - shiftY - y + "px";
-        }
-        //   let sx = 0
-        //   let sy = 0
-        // function scrollScheme(pageX, pageY){
-        //     if (pageX - shiftX + blockSize["x"] > schemeArea.getBoundingClientRect().width){
-        //         // sy+=1
-        //         sx+=10
-        //         console.log("lol")
-        //         schemeArea.scroll(sx, sy)
-                
-        //         console.log(schemeArea.scrollLeft)
-        //     }
-        // }
-
-
-      
-        // переносит блок на координаты (pageX, pageY),
-        // дополнительно учитывая изначальный сдвиг относительно указателя мыши
-
-        function onMouseMove(event) {
-          moveAt(event.movementX, event.movementY);
-          block.scrollIntoView({ block: "nearest", inline: "nearest" })
-        }
-      
-        // передвигаем блок при событии mousemove
-        document.addEventListener('mousemove', onMouseMove);
-      
-        // отпустить блок, удалить ненужные обработчики
-        document.onmouseup = function(event) {
-            // block.style.position = 'relative';
-
-            // if (block.classList.contains("in-scheme")){
-
-
-            // }
-            // else{
-            //     if (event.pageY + blockSize["y"] - shiftY > schemeArea.getBoundingClientRect().height){
-            //         block.onmouseup = null;
-            //         block.parentNode.removeChild(block);
-            //     }
-            //     else{
-                    block.onmouseup = null;
-                    if (block.classList.contains("non-parent")){
-                        schemeArea.append(block); 
-                    }
-                    block.style.left = Number(block.style.left.slice(0, -2)) + event.movementX + 'px';
-                    block.style.top = Number(block.style.top.slice(0, -2)) + event.movementY + 'px';
-                    
-
-            //     }
-            // }
-
-            document.removeEventListener('mousemove', onMouseMove);
-            document.onmouseup = null;
-            if (block.classList.contains("non-parent")){
-                block.classList.remove("non-parent");
-                drug(selector)
+                block.insertAdjacentHTML('beforebegin', block.outerHTML);
             }
 
-        };
+            block.style.position = 'relative';
+            block.style.zIndex = 1000;
+
+            function moveAt(movementX, movementY) {
+                if (block.classList.contains("non-parent")) scheme.append(block);
+
+                let newX = Number(block.style.left.slice(0, -2)) + movementX;
+                let newY = Number(block.style.top.slice(0, -2)) + movementY;
+
+                // if(newX > -schemePaddingLeft) 
+                block.style.left = newX + 'px';
+                // else block.style.left = -schemePaddingLeft
+
+                // if(newY > -schemePaddingTop) 
+                block.style.top = newY + 'px';
+                // else block.style.top = -schemePaddingTop
+
+            }
+
+            moveAt(event.movementX, event.movementY);
+
+            if (block.classList.contains("non-parent")){
+                x = block.getBoundingClientRect().x;
+                y = block.getBoundingClientRect().y;
+                block.style.left = event.pageX - shiftX - x + "px";
+                block.style.top = event.pageY - shiftY - y + "px";
+            }
+
+
+            function onMouseMove(event) {
+            moveAt(event.movementX, event.movementY);
+            block.scrollIntoView({ block: "nearest", inline: "nearest" });
+            }
         
-      };
-      
-      block.ondragstart = function() {
-        return false;
-      };
-        }
+            document.addEventListener('mousemove', onMouseMove);
+        
+            document.onmouseup = function(event) {
+                block.onmouseup = null;
+                if (block.classList.contains("non-parent")) scheme.append(block);
 
+                block.style.left = Number(block.style.left.slice(0, -2)) + event.movementX + 'px';
+                block.style.top = Number(block.style.top.slice(0, -2)) + event.movementY + 'px';
+
+                document.removeEventListener('mousemove', onMouseMove);
+
+                if (block.classList.contains("non-parent")){
+                    block.classList.remove("non-parent");
+                    blockActivation(selector);
+                }
+
+            }
+            block.ondragstart = function() {
+                return false;
+            }
+        }
+    }
 }
 
+//пошла работа
+blockActivation('.question-block');
+blockActivation('.text-block');
+blockActivation('.start-block');
 
 
+const btnSchemeOpen = document.querySelector(".make-scheme"),
+    btnSaveScheme = document.querySelector(".save-scheme"),
+    schemeArea = document.querySelector(".scheme-area");
+
+btnSchemeOpen.addEventListener("click", ()=>{
+    schemeArea.style.display = "inline";
+});
+
+btnSaveScheme.addEventListener("click", ()=>{
+    schemeArea.style.display = "none";
+});
 
 
-
-
-
-
-
-
-
-
-drug('.question-block');
-drug('.text-block');
-drug('.start-block');

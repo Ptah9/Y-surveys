@@ -11,29 +11,35 @@
     <div class="page">
         <div class="title-div">
             <h1 class="title">Y surveys</h1>
-            <h3 class="title-description">create your own <span class="italics">branched</span> survey</h3>
+            <h3 class="title-description">
+                create your own 
+                <span class="italics green">branche<span class="yellow">d</span></span> 
+                survey
+            </h3>
         </div>
         <div class="survey-information">
             <form class="inf-form">
-                <label for="name">name: </label>
+                <label for="name"><p>name: </p></label>
                 <input type="text" name="name" id="name"/> 
 
-                <label for="desc">description: </label>
+                <label for="desc"><p>description: </p></label>
                 <textarea name="desc" cols="40" rows="3"></textarea>
             </form>
-            <button class="make-scheme">make a scheme</button>
+            <button class="btn make-scheme">make a scheme</button>
         </div>
     </div>
 
+<!-- ----------------------------------------------------------------- -->
 
     <div class="scheme-area additional-area">
-        <!-- <h2 class="scheme-title">scheme</h2> -->
         <div class="scheme">
+
             <div class="start-block">
                 <div class="connection-point cp-start-down"></div>
             </div>
 
         </div>
+
         <div class="blocks">
 
             <div class="question-block non-parent">
@@ -46,12 +52,11 @@
                 <div class="connection-point cp-up"></div>
                 <div class="connection-point cp-text-down"></div>
             </div>
+
         </div>
-        <button class="save_scheme">save</button>
+
+        <button class="btn save-scheme">save</button>
     </div>
-
-
-
 
     <script type="module" src="scripts/main.js"></script>
 </body>
