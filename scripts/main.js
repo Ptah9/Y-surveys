@@ -41,7 +41,7 @@ let blockActivation = function(selector){
                         "block" : block,
                         "point" : "top"
                     });
-                    connections["connecting"] = false
+                    connections["connecting"] = false;
                 }
                 else{
 
@@ -49,7 +49,7 @@ let blockActivation = function(selector){
                         "block" : block,
                         "point" : "top"
                     }]);
-                    connections["connecting"] = true
+                    connections["connecting"] = true;
                 }
             }
             else if(shiftY > 2*blockSize["y"]/3){
@@ -61,7 +61,7 @@ let blockActivation = function(selector){
                         "block" : block,
                         "point" : "bottom"
                     });
-                    connections["connecting"] = false
+                    connections["connecting"] = false;
                 }
                 else{
 
@@ -69,7 +69,7 @@ let blockActivation = function(selector){
                         "block" : block,
                         "point" : "bottom"
                     }]);
-                    connections["connecting"] = true
+                    connections["connecting"] = true;
 
                 }
             }
