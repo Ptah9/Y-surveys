@@ -1,7 +1,7 @@
 let scheme = document.querySelector(".scheme");
 let x, y;
-let schemePaddingLeft = Number(window.getComputedStyle(scheme, null).getPropertyValue("padding-left").slice(0, -2)),
-    schemePaddingTop = Number(window.getComputedStyle(scheme, null).getPropertyValue("padding-top").slice(0, -2));
+let schemePaddingLeft = Number(window.getComputedStyle(scheme, null).getPropertyValue("padding-left").slice(0, -2)),  //why was I alone?
+    schemePaddingTop = Number(window.getComputedStyle(scheme, null).getPropertyValue("padding-top").slice(0, -2));    //What did I do to deserve this?
 let svg = null;
 let svgs = document.getElementsByClassName("svg");
     
@@ -50,17 +50,14 @@ let blockActivation = function(selector){
                         "point" : "top"
                     }]);
                     connections["connecting"] = true
-
                 }
-
-
             }
             else if(shiftY > 2*blockSize["y"]/3){
                 console.log("bottom");
                 
                 if (connections["connecting"]){
                     
-                    connections["connects"][connections["connects"].length-1].push({
+                    connections["connects"][connections["connects"].length-1].push({   //why did Ivan do this?
                         "block" : block,
                         "point" : "bottom"
                     });
@@ -75,11 +72,6 @@ let blockActivation = function(selector){
                     connections["connecting"] = true
 
                 }
-
-
-
-
-
             }
         }
 
@@ -97,6 +89,7 @@ let blockActivation = function(selector){
             moveAt(event.movementX, event.movementY);
 
             if (block.classList.contains("non-parent")){
+                // lul
                 x = block.getBoundingClientRect().x;
                 y = block.getBoundingClientRect().y;
                 block.style.left = event.pageX - shiftX - x + "px";
@@ -117,13 +110,8 @@ let blockActivation = function(selector){
                 let newX = Number(block.style.left.slice(0, -2)) + movementX;
                 let newY = Number(block.style.top.slice(0, -2)) + movementY;
             
-                // if(newX > -schemePaddingLeft) 
                 block.style.left = newX + 'px';
-                // else block.style.left = -schemePaddingLeft
-            
-                // if(newY > -schemePaddingTop) 
                 block.style.top = newY + 'px';
-                // else block.style.top = -schemePaddingTop
             
             }
 
@@ -162,7 +150,7 @@ let blockActivation = function(selector){
                 block.onmouseup = null;
                 if (block.classList.contains("non-parent")) blockArea.append(block);
 
-                block.style.left = Number(block.style.left.slice(0, -2)) + event.movementX + 'px';
+                block.style.left = Number(block.style.left.slice(0, -2)) + event.movementX + 'px'; //pashalka
                 block.style.top = Number(block.style.top.slice(0, -2)) + event.movementY + 'px';
 
                 document.removeEventListener('mousemove', onMouseMove);
@@ -178,7 +166,7 @@ let blockActivation = function(selector){
 
 
             }
-            // updateLines();
+            updateLines();
             block.ondragstart = function() {
                 return false;
             
@@ -204,8 +192,6 @@ function makeLine(x1, y1, x2, y2){
     line.setAttribute('y1', y1 - line.getBoundingClientRect().y);
     line.setAttribute('x2', x2);
     line.setAttribute('y2', y2 - line.getBoundingClientRect().y);
-    let thisSvgs = document.querySelectorAll(".svg")
-    let thisSvg = thisSvgs[thisSvgs.length - 1];
     line.style.zIndex = 100000;
 
     line.addEventListener("click", ()=>{

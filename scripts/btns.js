@@ -5,9 +5,9 @@ const btnSchemeOpen = document.querySelector(".make-scheme"),
 btnSchemeOpen.addEventListener("click", ()=>{
     schemeArea.style.display = "inline";
 });
-
+// Y
 let svgs = document.getElementsByClassName("svg");
 
 btnSaveScheme.addEventListener("click", ()=>{
       schemeArea.style.display = "none";
-});
+}); 
