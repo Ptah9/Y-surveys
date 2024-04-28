@@ -207,6 +207,8 @@ function makeLine(x1, y1, x2, y2){
     let thisSvgs = document.querySelectorAll(".svg")
     let thisSvg = thisSvgs[thisSvgs.length - 1];
     line.style.zIndex = 100000;
+
+    line.addEventListener("click", ()=>{ })
 }
 
 

@@ -3,7 +3,12 @@ body{
 }
 
 .page{
-    margin: 4vw;
+    padding: 4vw;
+    background-image: url("../imgs/back.png");
+    background-size: cover;
+    background-position:top;
+    height: 100vh;
+    width: 100vw;
 }
 
 @font-face {
@@ -18,6 +23,7 @@ body{
 }
 
 h1{
+    color: rgb(0, 0, 0);
     font-family: Minecraft Regular;
 }
 h2{
@@ -46,6 +52,8 @@ p{
 
 
 .italics{
+    background-color:     #686868;
+    padding: 5px;
     font-style: italic;
 
 }
