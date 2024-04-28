@@ -37,14 +37,14 @@ p{
 }
 
 .btn{
-    color: black
+    color: black;
     font-family: Minecraft Regular;
     width: 90vw;
     height: 50px;
     border-radius: 0px;
     border: 3px solid #97d931;
     background-color: rgb(228, 228, 228);
-    margin-top: 30px
+    margin-top: 30px;
 }
 
 .btn:active{
@@ -204,4 +204,16 @@ svg {
 .block-area{
     width: 0px;
     height: 0px;
+}
+
+.add-area{
+    height: 80vh;
+    width: 100vw;
+    background-color: black;
+    position: absolute;
+    bottom: 0px;
+    text-align: center;
+    display: none;
+    color: white;
+
 }

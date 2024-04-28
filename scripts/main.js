@@ -5,6 +5,10 @@ let schemePaddingLeft = Number(window.getComputedStyle(scheme, null).getProperty
 let svg = null;
 let svgs = document.getElementsByClassName("svg");
     
+
+let addTextArea = document.querySelector(".add-text");
+let addAnswerArea = document.querySelector(".add-answer");
+
 let connections = {
     "connecting": false,
     "connects" : []
@@ -77,9 +81,6 @@ let blockActivation = function(selector){
 
 
             }
-            else {
-                console.log("center");
-            }
         }
 
         else{
@@ -151,7 +152,6 @@ let blockActivation = function(selector){
                             x2 = Number(obj2.block.style.left.slice(0, -2)) + obj2.block.getBoundingClientRect().width/2
                             y2 = Number(obj2.block.style.top.slice(0, -2)) + obj2.block.getBoundingClientRect().height + 75
                         }
-                        console.log(connections);
                         makeLine(x1, y1, x2, y2);
                     }
                 }
@@ -212,7 +212,3 @@ function makeLine(x1, y1, x2, y2){
         
      })
 }
-
-
-// makeLine(20, 20, 300, 300);
-
