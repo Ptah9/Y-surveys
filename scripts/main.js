@@ -208,7 +208,9 @@ function makeLine(x1, y1, x2, y2){
     let thisSvg = thisSvgs[thisSvgs.length - 1];
     line.style.zIndex = 100000;
 
-    line.addEventListener("click", ()=>{ })
+    line.addEventListener("click", ()=>{
+        
+     })
 }
 
 
