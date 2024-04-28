@@ -3,12 +3,16 @@ let x, y;
 let schemePaddingLeft = Number(window.getComputedStyle(scheme, null).getPropertyValue("padding-left").slice(0, -2)),
     schemePaddingTop = Number(window.getComputedStyle(scheme, null).getPropertyValue("padding-top").slice(0, -2));
 let svg = null;
+let svgs = document.getElementsByClassName("svg");
     
 let connections = {
     "connecting": false,
     "connects" : []
 };
+let svgArea = document.querySelector(".svg-area");
+let blockArea = document.querySelector(".block-area");
 
+let svgBorder = document.querySelector(".svg-border");
 
 
 let blockActivation = function(selector){
@@ -28,7 +32,7 @@ let blockActivation = function(selector){
                 console.log("top");
 
                 if (connections["connecting"]){
-                    console.log(connections["connects"])
+                    
                     connections["connects"][connections["connects"].length-1].push({
                         "block" : block,
                         "point" : "top"
@@ -37,10 +41,10 @@ let blockActivation = function(selector){
                 }
                 else{
 
-                    connections["connects"].push({
+                    connections["connects"].push([{
                         "block" : block,
                         "point" : "top"
-                    });
+                    }]);
                     connections["connecting"] = true
 
                 }
@@ -102,11 +106,12 @@ let blockActivation = function(selector){
         }
             function onMouseMove(event) {
             moveAt(event.movementX, event.movementY);
-            block.scrollIntoView({ block: "nearest", inline: "nearest" });
+            if (! block.classList.contains("non-parent")) block.scrollIntoView({ block: "nearest", inline: "nearest" });
+            updateLines();
             }
         
             function moveAt(movementX, movementY) {
-                if (block.classList.contains("non-parent")) scheme.append(block);
+                if (block.classList.contains("non-parent")) blockArea.append(block);
             
                 let newX = Number(block.style.left.slice(0, -2)) + movementX;
                 let newY = Number(block.style.top.slice(0, -2)) + movementY;
@@ -120,23 +125,11 @@ let blockActivation = function(selector){
                 // else block.style.top = -schemePaddingTop
             
             }
-        
-            document.onmouseup = function(event) {
-                block.onmouseup = null;
-                if (block.classList.contains("non-parent")) scheme.append(block);
 
-                block.style.left = Number(block.style.left.slice(0, -2)) + event.movementX + 'px';
-                block.style.top = Number(block.style.top.slice(0, -2)) + event.movementY + 'px';
-
-                document.removeEventListener('mousemove', onMouseMove);
-
-                if (block.classList.contains("non-parent")){
-                    block.classList.remove("non-parent");
-                    blockActivation(selector);
-                }
-
+            function updateLines(){
+                
                 if (!connections["connecting"]){
-                    if (svg) svg.remove()
+                    svgArea.innerHTML = '';
                     for (let i = 0; i < connections["connects"].length; i++){
                         let obj1 = connections["connects"][i][0]
                         let obj2 = connections["connects"][i][1]
@@ -158,18 +151,34 @@ let blockActivation = function(selector){
                             x2 = Number(obj2.block.style.left.slice(0, -2)) + obj2.block.getBoundingClientRect().width/2
                             y2 = Number(obj2.block.style.top.slice(0, -2)) + obj2.block.getBoundingClientRect().height + 75
                         }
-                        console.log(x1, y1, x2, y2);
-                
+                        console.log(connections);
                         makeLine(x1, y1, x2, y2);
-                
                     }
                 }
+            }
 
+        
+            document.onmouseup = function(event) {
+                block.onmouseup = null;
+                if (block.classList.contains("non-parent")) blockArea.append(block);
 
+                block.style.left = Number(block.style.left.slice(0, -2)) + event.movementX + 'px';
+                block.style.top = Number(block.style.top.slice(0, -2)) + event.movementY + 'px';
 
+                document.removeEventListener('mousemove', onMouseMove);
+
+                if (block.classList.contains("non-parent")){
+                    block.classList.remove("non-parent");
+                    blockActivation(selector);
+                    
+                }
+                updateLines()
+
+                
 
 
             }
+            // updateLines();
             block.ondragstart = function() {
                 return false;
             
@@ -186,28 +195,20 @@ blockActivation('.start-block');
 // -------------------------------------------------------------
 
 
+
 function makeLine(x1, y1, x2, y2){
+    svgArea.insertAdjacentHTML('afterbegin', '<svg><line id="line" class="svg" viewBox="0 0 700 700" stroke="black" stroke-width="5"/></svg>');
 
     
-    let width = x2 - x1,
-        height = y2 - y1;
-    
-    svg = document.createElementNS( 'http://www.w3.org/2000/svg', 'svg' );
-    svg.style.left = x1 + 'px';
-    svg.style.top = y1 + 'px';
-    svg.setAttribute( 'width', x2 - x1 );
-    svg.setAttribute( 'height', y2 - y1 );
-    svg.setAttribute( 'viewBox', `0 0 ${width} ${height}` );
-    
-    let path = document.createElementNS( 'http://www.w3.org/2000/svg', 'path' );
-    path.setAttribute( 'stroke', 'black' );
-    path.setAttribute( 'stroke-width', '3' );
-    path.setAttribute( 'd', `M 0,0 L ${width},${height}` );
-    
-    svg.appendChild(path);
-    
-    document.body.appendChild(svg);
+    line.setAttribute('x1', x1);
+    line.setAttribute('y1', y1 - line.getBoundingClientRect().y);
+    line.setAttribute('x2', x2);
+    line.setAttribute('y2', y2 - line.getBoundingClientRect().y);
+    let thisSvgs = document.querySelectorAll(".svg")
+    let thisSvg = thisSvgs[thisSvgs.length - 1];
+    line.style.zIndex = 100000;
 }
+
 
 // makeLine(20, 20, 300, 300);
 

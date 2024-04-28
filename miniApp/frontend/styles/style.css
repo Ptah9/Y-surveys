@@ -174,5 +174,25 @@ form{
 }
 
 svg {
-    position: absolute;
-  }
+    width: 100%;
+    height: 100%;
+}
+.svg{
+    position: relative;
+    left: 150px;
+}
+
+
+
+.svg-border{
+    display: none;
+}
+
+.svg-area{
+    width: 1000%;
+    height: 1000%;
+}
+.block-area{
+    width: 0px;
+    height: 0px;
+}
